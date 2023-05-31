@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Encriptador</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    nav {
+      background-color: #4169E1;
+      padding: 10px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      text-align: center;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+      transition: font-size 0.2s ease-in-out;
+    }
+
+    nav a:hover {
+      font-size: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #4169E1;
+    }
+
+    textarea {
+      width: 400px;
+      height: 150px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      resize: none;
+      margin: 0 auto;
+    }
+
+    #buttonContainer {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: #4169E1;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      margin-right: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+      width: 120px;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+ footer {
+      background-color: #f2f2f2;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    /* Estilos para el texto del footer */
+    footer p {
+      margin: 0;
+      font-size: 14px;
+      color: #888;
+    }
+   
+    
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://www.aluracursos.com/">Alura</a>
+  </nav>
+  <h1>Encriptador</h1>
+
+  <textarea id="inputText" placeholder="Ingresa el texto aqui"></textarea><br>
+
+  <button onclick="encriptar()">Encriptar</button>
+  <button onclick="desencriptar()">Desencriptar</button>
+  <button onclick="copiarResultado()">Copiar</button>
+
+  <h2>Resultado:</h2>
+  <div id="resultado"></div>
+
+  <script>
+    function encriptar() {
+      var texto = document.getElementById('inputText').value;
+      var resultado = '';
+
+      for (var i = 0; i < texto.length; i++) {
+        var letra = texto.charAt(i);
+
+        switch (letra) {
+          case 'e':
+            resultado += 'enter';
+            break;
+          case 'i':
+            resultado += 'imes';
+            break;
+          case 'a':
+            resultado += 'ai';
+            break;
+          case 'o':
+            resultado += 'ober';
+            break;
+          case 'u':
+            resultado += 'ufat';
+            break;
+          default:
+            resultado += letra;
+        }
+      }
+
+      document.getElementById('resultado').innerText = resultado;
+    }
+
+    function desencriptar() {
+      var textoEncriptado = document.getElementById('inputText').value;
+      var resultado = '';
+
+      resultado = textoEncriptado.replace(/enter/g, 'e')
+                                .replace(/imes/g, 'i')
+                                .replace(/ai/g, 'a')
+                                .replace(/ober/g, 'o')
+                                .replace(/ufat/g, 'u');
+
+      document.getElementById('resultado').innerText = resultado;
+    }
+
+    function copiarResultado() {
+      var resultado = document.getElementById('resultado').innerText;
+
+      navigator.clipboard.writeText(resultado)
+        .then(function() {
+          alert('El resultado se ha copiado al portapapeles.');
+        })
+        .catch(function() {
+          alert('No se pudo copiar el resultado.');
+        });
+    }
+  </script>
+
+  <footer>
+    <p>Desarrollado por Rodolfo Barrantes Valverde</p>
+  </footer>
+</body>
+</html>
